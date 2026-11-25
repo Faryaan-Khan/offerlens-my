@@ -4,6 +4,8 @@
 
 **Know what a Malaysian job offer is really worth: take-home pay, living costs and a clear answer, all in your browser.**
 
+**[Open the live app →](https://faryaan-khan.github.io/offerlens-my/)**
+
 [![CI](https://github.com/Faryaan-Khan/offerlens-my/actions/workflows/ci.yml/badge.svg)](https://github.com/Faryaan-Khan/offerlens-my/actions/workflows/ci.yml)
 [![Deploy](https://github.com/Faryaan-Khan/offerlens-my/actions/workflows/deploy.yml/badge.svg)](https://github.com/Faryaan-Khan/offerlens-my/actions/workflows/deploy.yml)
 [![Refresh CPI data](https://github.com/Faryaan-Khan/offerlens-my/actions/workflows/refresh-data.yml/badge.svg)](https://github.com/Faryaan-Khan/offerlens-my/actions/workflows/refresh-data.yml)
