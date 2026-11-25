@@ -1,0 +1,64 @@
+name: Refresh CPI data
+
+on:
+  schedule:
+    # 01:17 UTC = 09:17 Malaysia time (UTC+8), daily
+    - cron: '17 1 * * *'
+  workflow_dispatch:
+    inputs:
+      rebaseline:
+        description: 'Reset CPI baseline to the latest values'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch CPI from data.gov.my
+        run: node scripts/update-data.mjs ${{ inputs.rebaseline && '--rebaseline' || '' }}
+
+      - name: Detect changes
+        id: diff
+        run: |
+          if git diff --quiet -- public/data/market.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No CPI change."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --stat -- public/data/market.json
+          fi
+
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/data/market.json
+          git commit -m 'chore(data): refresh CPI from data.gov.my'
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
+
+  deploy:
+    needs: refresh
+    if: needs.refresh.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy.yml
