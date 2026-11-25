@@ -374,12 +374,14 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, .card-title, .page-title { font-weight: 700;
 .brand-word { white-space: nowrap; }
 .brand-o {
   display: inline-block;
-  width: 0.95em;
-  height: 0.95em;
-  margin-right: 0.05em;
+  /* Sits on the baseline like the other letters and rises above their cap height. */
+  width: 1em;
+  height: 1em;
+  margin-right: 0.04em;
   border: 0.15em solid var(--brand-lime);
   border-radius: 50%;
-  vertical-align: -0.16em;
+  box-sizing: border-box;
+  vertical-align: baseline;
 }
 
 /* ---------- Icon buttons: true centring ---------- */
