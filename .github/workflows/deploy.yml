@@ -45,7 +45,7 @@ jobs:
           # When called after a data refresh, build the latest main (which includes the bot's commit),
           # not the commit the calling run started from.
           ref: main
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
