@@ -93,6 +93,15 @@ Tax and contribution rates only change with the national Budget, so they live in
 - If DOSM has published a new month, it commits the updated [`public/data/market.json`](public/data/market.json) and redeploys the site. Otherwise it does nothing.
 - The app scales each city's living-cost baseline by `latest CPI / baseline CPI` for its state, unless you have typed your own figure.
 
+The rest of the project maintains itself too:
+
+| What changes | How often | What happens automatically |
+| --- | --- | --- |
+| Living costs (state CPI from DOSM) | Monthly | Checked daily; new data is committed and the site redeploys ([`refresh-data.yml`](.github/workflows/refresh-data.yml)) |
+| Libraries and build tools | Weekly / monthly | Dependabot opens update PRs; if the full test suite passes they are merged and deployed ([`dependabot-merge.yml`](.github/workflows/dependabot-merge.yml)) |
+| Tax bands, reliefs, EPF/SOCSO/EIS rules | Yearly (Budget) | No official API exists, so a monthly check opens a review issue with a checklist when the rates year falls behind ([`yearly-rates-check.yml`](.github/workflows/yearly-rates-check.yml)) |
+| Demo data dates, follow-up reminders | Daily | Computed relative to today, so they never go stale |
+
 Details, API calls, safeguards and how to rebaseline: **[docs/DATA.md](docs/DATA.md)**.
 
 ## Tech stack

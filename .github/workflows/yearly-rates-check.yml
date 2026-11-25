@@ -1,0 +1,52 @@
+name: Check tax and contribution rates are current
+
+# Malaysia's income tax bands, reliefs and EPF/SOCSO/EIS rules change with each
+# Budget (tabled in October, effective from 1 January). There is no official API
+# for them, so this checks every month whether the rates in src/data/rates.ts
+# are for the current year of assessment and opens an issue when they are not.
+# Living costs (CPI) are refreshed automatically every day by refresh-data.yml.
+
+on:
+  schedule:
+    - cron: '23 2 1 * *' # 02:23 UTC on the 1st of every month
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare the rates year with today
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          rates_year=$(grep -oE 'year: *[0-9]{4}' src/data/rates.ts | head -1 | grep -oE '[0-9]{4}')
+          this_year=$(date -u +%Y)
+          month=$(date -u +%-m)
+          echo "Rates are for YA $rates_year; it is $this_year-$month."
+          need=""
+          if [ "$rates_year" -lt "$this_year" ]; then need="$this_year"; fi
+          # Budget for next year is tabled in October: flag it from November.
+          if [ "$month" -ge 11 ] && [ "$rates_year" -le "$this_year" ]; then need="$((this_year + 1))"; fi
+          if [ -z "$need" ]; then echo "Rates are current."; exit 0; fi
+          title="Review tax and contribution rates for YA $need"
+          if gh issue list -R "$REPO" --state open --search "\"$title\" in:title" --json number --jq '.[0].number' | grep -q .; then
+            echo "Issue already open."; exit 0
+          fi
+          gh label create maintenance -R "$REPO" --color 0E8A16 --description "Routine upkeep" 2>/dev/null || true
+          gh issue create -R "$REPO" --label maintenance --title "$title" --body "The app uses rates for **YA $rates_year** (\`src/data/rates.ts\`).
+
+          Check the Budget and official sources for YA $need and update if anything changed:
+
+          - [ ] Income tax bands, rebate and reliefs (LHDN)
+          - [ ] EPF employee/employer rates and the RM5,000 threshold (KWSP)
+          - [ ] SOCSO and EIS rates and wage ceiling (PERKESO)
+          - [ ] Update \`year\` in \`src/data/rates.ts\`, the tests in \`tests/\` and \`docs/METHODOLOGY.md\`
+          - [ ] Add a CHANGELOG entry
+
+          Opened automatically by \`yearly-rates-check.yml\`."

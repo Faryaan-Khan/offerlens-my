@@ -24,7 +24,7 @@
     "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
     "@tabler/core": "^1.7.5",
     "@tabler/icons-webfont": "^3.53.0",
-    "apexcharts": "^4.7.0"
+    "apexcharts": "^8.9.1"
   },
   "type": "module",
   "private": "true",

@@ -50,7 +50,7 @@ export function renderChart(el: Element | null, options: ApexCharts.ApexOptions)
   if (!el) return undefined;
   el.innerHTML = '';
   const merged = deepMerge(baseOptions(), options);
-  const chart = new ApexCharts(el, merged);
+  const chart = new ApexCharts(el as HTMLElement, merged);
   chart.render();
   active.add(chart);
   return chart;

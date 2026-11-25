@@ -1,0 +1,50 @@
+name: Merge passing dependency updates
+
+# Dependabot opens update PRs (weekly for npm, monthly for Actions; see
+# .github/dependabot.yml). This waits for CI (type-check, unit tests, build and
+# end-to-end tests) on each one. If everything passes, it merges the PR and
+# redeploys the site, so the app keeps itself current. Updates that fail CI
+# stay open for a human to look at.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: read
+  statuses: read
+  actions: write
+
+jobs:
+  merge:
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR: ${{ github.event.pull_request.number }}
+      REPO: ${{ github.repository }}
+    steps:
+      - name: Wait for CI to finish
+        env:
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          # Poll only the CI jobs (not this job's own check run).
+          for i in $(seq 1 80); do
+            sleep 30
+            res=$(gh api "repos/$REPO/commits/$SHA/check-runs?per_page=100" --jq \
+              '[.check_runs[] | select(.name == "Type-check, unit tests & build" or .name == "End-to-end (Playwright)") | .conclusion // "pending"] | join(",")')
+            echo "CI: ${res:-not started}"
+            case "$res" in
+              *failure*|*cancelled*|*timed_out*) echo "::warning::CI failed on #$PR; leaving it open for review."; exit 1 ;;
+              success,success) exit 0 ;;
+            esac
+          done
+          echo "::warning::CI did not finish in time"; exit 1
+      - name: Merge
+        run: gh pr merge "$PR" -R "$REPO" --squash --delete-branch
+      # Merges made with GITHUB_TOKEN do not trigger push workflows, so start the deploy explicitly.
+      - name: Redeploy the site
+        run: gh workflow run deploy.yml -R "$REPO" --ref main

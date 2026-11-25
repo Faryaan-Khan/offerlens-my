@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Dependency updates that pass the full test suite are merged and deployed automatically.
+- Monthly check that opens a review issue when the tax and contribution rates year falls behind.
+
+### Changed
+
+- ApexCharts 8, TypeScript 7 and newer GitHub Actions (Pages, Node setup, artifacts).
+
 ## [1.1.0] - 2026-11-25
 
 ### Added
