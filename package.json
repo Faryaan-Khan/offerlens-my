@@ -1,0 +1,33 @@
+{
+  "name": "offerlens-my",
+  "version": "1.0.0",
+  "description": "Malaysian salary & job-offer decision engine for fresh grads",
+  "scripts": {
+    "test": "vitest run",
+    "dev": "vite",
+    "build": "tsc --noEmit -p . && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit -p .",
+    "e2e": "playwright test",
+    "data:update": "node scripts/update-data.mjs",
+    "screenshots": "npm run build && node e2e/screenshots.mjs"
+  },
+  "author": "Faryaan Khan",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "typescript": "~5.9",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  },
+  "dependencies": {
+    "@tabler/core": "^1.7.5",
+    "@tabler/icons-webfont": "^3.53.0",
+    "apexcharts": "^4.7.0"
+  },
+  "type": "module",
+  "private": "true",
+  "engines": {
+    "node": ">=20"
+  }
+}
