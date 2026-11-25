@@ -13,7 +13,7 @@ import { cpiFactor } from '../../lib/market';
 export const overviewView: View = {
   title: 'Overview',
   heading: 'Your job-offer dashboard',
-  pretitle: 'OfferLens MY',
+  pretitle: 'Every offer, payslip and application in one place, worked out with Malaysian rules.',
   icon: 'layout-dashboard',
   nav: true,
   render(host) {
@@ -34,15 +34,16 @@ export const overviewView: View = {
       </div></div></div>` : ''}
 
     <div class="row row-deck row-cards">
+      <div class="col-sm-6 col-lg-3"><div class="card spark-hero"><div class="card-body">
+        <span class="spark-chip mb-3">Best offer</span>
+        <div class="h2 mb-1 text-truncate text-white">${best ? esc(best.offer.company) : 'No offers yet'}</div>
+        <div class="text-secondary small mb-2">${best ? `Score ${best.score}/100 · ${money(best.monthlyDisposable)} left over/mo` : 'Add offers to compare them'}</div>
+        <a href="#/offers" class="fw-bold small">${best ? 'See comparison' : 'Add an offer'} <i aria-hidden="true" class="ti ti-arrow-right"></i></a>
+      </div><i aria-hidden="true" class="ti ti-asterisk spark-hero-mark"></i></div></div>
       <div class="col-sm-6 col-lg-3"><div class="card"><div class="card-body">
         <div class="subheader">Monthly take-home</div>
         <div class="h1 mb-1 metric">${money2(pay.monthly.net)}</div>
         <div class="text-secondary small">From ${money(pay.monthly.gross)} gross · <a href="#/take-home">adjust</a></div>
-      </div></div></div>
-      <div class="col-sm-6 col-lg-3"><div class="card"><div class="card-body">
-        <div class="subheader">Best offer</div>
-        <div class="h1 mb-1 text-truncate">${best ? esc(best.offer.company) : '—'}</div>
-        <div class="text-secondary small">${best ? `Score ${best.score}/100 · ${money(best.monthlyDisposable)} left over/mo` : '<a href="#/offers">Add offers to compare</a>'}</div>
       </div></div></div>
       <div class="col-sm-6 col-lg-3"><div class="card"><div class="card-body">
         <div class="subheader">Active applications</div>
@@ -108,8 +109,8 @@ export const overviewView: View = {
         series: [{ name: 'Left over / month', data: ranked.map((e) => Math.round(e.monthlyDisposable)) }],
         xaxis: { categories: ranked.map((e) => e.offer.company) },
         yaxis: { labels: { formatter: (v: number) => money(v) } },
-        colors: [p.green],
-        plotOptions: { bar: { columnWidth: '45%', borderRadius: 4, dataLabels: { position: 'top' } } },
+        colors: [p.primary],
+        plotOptions: { bar: { columnWidth: '38%', borderRadius: 6, dataLabels: { position: 'top' } } },
         dataLabels: { enabled: true, offsetY: -20, formatter: (v: number) => money(v), style: { colors: [p.text] } },
         tooltip: { x: { formatter: (v: unknown) => esc(String(v)) }, y: { formatter: (v: number) => money(v) } },
       });

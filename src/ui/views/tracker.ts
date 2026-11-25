@@ -17,7 +17,7 @@ const STAGE_COLORS: Record<Stage, string> = {
 export const trackerView: View = {
   title: 'Applications',
   heading: 'Application tracker',
-  pretitle: 'Your job hunt pipeline',
+  pretitle: 'Track every application from wishlist to offer, with follow-up reminders.',
   icon: 'briefcase',
   nav: true,
   render(host, actions) {

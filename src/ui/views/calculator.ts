@@ -20,7 +20,7 @@ const field = (id: string, label: string, value: number, opts: { step?: number; 
 
 export const calculatorView: View = {
   title: 'Take-home pay',
-  pretitle: `Malaysia · YA ${MY_RATES.year} rates`,
+  pretitle: `What actually lands in your bank account, using Malaysia's YA ${MY_RATES.year} rates.`,
   icon: 'calculator',
   nav: true,
   render(host) {

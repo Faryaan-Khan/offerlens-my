@@ -97,7 +97,8 @@ Details, API calls, safeguards and how to rebaseline: **[docs/DATA.md](docs/DATA
 ## Tech stack
 
 - **[Vite](https://vite.dev/)** and **TypeScript** in strict mode, no framework
-- **[Tabler](https://tabler.io/) 1.x** (MIT) for the UI, with Tabler Icons
+- **[Spark Admin](https://themewagon.com/themes/spark/)** design (by ThemeWagon) for the look: forest-green sidebar, lime accents, Plus Jakarta Sans
+- **[Tabler](https://tabler.io/) 1.x** (MIT) for the UI components, with Tabler Icons
 - **[ApexCharts](https://apexcharts.com/)** for charts
 - **[Vitest](https://vitest.dev/)**: about 200 unit tests covering payroll, offers, tracker, storage, market data and the refresh script
 - **[Playwright](https://playwright.dev/)** end-to-end tests
@@ -179,6 +180,8 @@ OfferLens MY gives careful **estimates** for planning and negotiation. It is **n
 
 Released under the [MIT License](LICENSE). Copyright (c) 2026 Faryaan Khan.
 
+- Visual design based on [Spark – Free Bootstrap 5 Admin Dashboard](https://themewagon.com/themes/spark/), distributed by [ThemeWagon](https://themewagon.com/). Credit is kept in the app footer as the template licence asks.
+- [Plus Jakarta Sans](https://fontsource.org/fonts/plus-jakarta-sans) via Fontsource, OFL-1.1
 - [Tabler](https://github.com/tabler/tabler) and [Tabler Icons](https://github.com/tabler/tabler-icons), MIT
 - [ApexCharts](https://github.com/apexcharts/apexcharts.js), MIT
 - Consumer Price Index data: Department of Statistics Malaysia (DOSM), via [data.gov.my](https://data.gov.my/) / OpenDOSM, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Living-cost figures in the app are derived from DOSM data, not published by DOSM.

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Restyled the whole interface on the Spark Admin design (ThemeWagon): dark forest
+  sidebar with grouped menu, topbar with quick jump search, rounded cards, lime
+  accent hero cards, Plus Jakarta Sans and a matching chart palette in light and
+  dark mode. Footer credits the template.
+
 ## [1.0.0] - 2026-11-25
 
 ### Added

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>OfferLens MY · Malaysian salary &amp; job-offer decisions</title>
     <meta name="description" content="Work out your real take-home pay in Malaysia (EPF, SOCSO, EIS, PCB), compare job offers adjusted for city living costs, plan salary negotiations and track applications. Runs entirely in your browser." />
-    <meta name="theme-color" content="#066fd1" />
+    <meta name="theme-color" content="#051C12" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <script>
       // Apply the saved theme before first paint to avoid a flash.
@@ -21,38 +21,49 @@
   </head>
   <body>
     <div class="page">
-      <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark" aria-label="Main navigation">
+      <aside class="navbar navbar-vertical navbar-expand-lg spark-sidebar" data-bs-theme="dark" aria-label="Main navigation">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a href="#/" class="navbar-brand navbar-brand-autodark brand">
-            <span class="brand-mark" aria-hidden="true"><i aria-hidden="true" class="ti ti-zoom-money"></i></span>
-            <span>OfferLens <span class="text-primary">MY</span></span>
+          <a href="#/" class="navbar-brand brand">
+            <i aria-hidden="true" class="ti ti-asterisk brand-mark"></i>
+            <span>OfferLens <span class="brand-accent">MY</span></span>
           </a>
           <div class="navbar-nav flex-row d-lg-none">
             <button class="nav-link px-0 theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode"><i aria-hidden="true" class="ti ti-moon"></i></button>
           </div>
           <div class="collapse navbar-collapse" id="sidebar-menu">
-            <ul class="navbar-nav pt-lg-3" id="nav"></ul>
+            <nav id="nav" class="spark-menu" aria-label="Pages"></nav>
             <div class="sidebar-foot d-none d-lg-block">
-              <div id="data-freshness" class="small text-secondary"></div>
+              <div class="sidebar-card" id="data-freshness"></div>
             </div>
           </div>
         </div>
       </aside>
       <div class="page-wrapper">
-        <div class="page-header d-print-none">
+        <header class="spark-topbar d-print-none">
+          <div class="container-xl d-flex align-items-center gap-3">
+            <a class="btn spark-btn-dark d-none d-md-inline-flex" href="#/offers"><i aria-hidden="true" class="ti ti-plus me-1"></i>Compare an offer</a>
+            <div class="spark-search d-none d-md-flex" role="search">
+              <i aria-hidden="true" class="ti ti-search"></i>
+              <input type="search" id="quick-jump" list="quick-jump-list" placeholder="Jump to… take-home, offers, applications" aria-label="Jump to a page">
+              <datalist id="quick-jump-list"></datalist>
+            </div>
+            <div class="ms-auto d-flex align-items-center gap-2">
+              <a class="spark-icon-btn d-none d-sm-inline-flex" href="https://github.com/Faryaan-Khan/offerlens-my" rel="noopener" aria-label="Source code on GitHub" title="Source on GitHub"><i aria-hidden="true" class="ti ti-brand-github"></i></a>
+              <button class="spark-icon-btn theme-toggle d-none d-lg-inline-flex" type="button" title="Toggle dark mode" aria-label="Toggle dark mode"><i aria-hidden="true" class="ti ti-moon"></i></button>
+            </div>
+          </div>
+        </header>
+        <div class="page-header spark-page-header d-print-none">
           <div class="container-xl">
-            <div class="row g-2 align-items-center">
+            <div class="row g-3 align-items-end">
               <div class="col">
-                <div class="page-pretitle" id="page-pretitle"></div>
                 <h1 class="page-title" id="page-title">OfferLens MY</h1>
+                <div class="page-subtitle" id="page-pretitle"></div>
               </div>
               <div class="col-auto ms-auto d-print-none" id="page-actions"></div>
-              <div class="col-auto d-none d-lg-block">
-                <button class="btn btn-icon theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode"><i aria-hidden="true" class="ti ti-moon"></i></button>
-              </div>
             </div>
           </div>
         </div>
@@ -70,6 +81,7 @@
               </div>
               <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-secondary small">
                 Estimates only, not tax or financial advice. Your data never leaves this browser.
+                <span class="d-block d-lg-inline ms-lg-2">Design based on <a href="https://themewagon.com/themes/spark/" class="link-secondary" rel="noopener">Spark Admin</a> · Distributed by <a href="https://themewagon.com/" class="link-secondary" rel="noopener">ThemeWagon</a></span>
               </div>
             </div>
           </div>

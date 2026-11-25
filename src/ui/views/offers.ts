@@ -14,7 +14,7 @@ const WEIGHT_LABELS: Record<keyof Weights, string> = {
 
 export const offersView: View = {
   title: 'Compare offers',
-  pretitle: 'Decide with real numbers',
+  pretitle: 'Every offer turned into the money you keep after tax, EPF and living costs.',
   icon: 'scale',
   nav: true,
   render(host, actions) {
@@ -37,14 +37,13 @@ export const offersView: View = {
       host.innerHTML = `
       <div class="row row-cards">
         <div class="col-12">
-          <div class="card bg-primary-lt">
-            <div class="card-body d-flex flex-wrap gap-3 align-items-center">
-              <span class="avatar avatar-md bg-primary text-white"><i aria-hidden="true" class="ti ti-trophy"></i></span>
-              <div class="flex-fill">
-                <div class="fw-bold">${esc(best.offer.company)} comes out on top with a score of ${best.score}/100</div>
-                <div class="text-secondary">After tax, EPF, SOCSO, EIS and ${esc(best.city?.name ?? 'living')} costs, you'd keep about <strong>${money(best.monthlyDisposable)}</strong> a month (${pct(best.savingsRate, 0)} of take-home).</div>
-              </div>
+          <div class="card spark-hero">
+            <div class="card-body pe-lg-6">
+              <span class="spark-chip mb-3">Top pick</span>
+              <div class="h2 mb-1 text-white">${esc(best.offer.company)} comes out on top with ${best.score}/100</div>
+              <div class="text-secondary">After tax, EPF, SOCSO, EIS and ${esc(best.city?.name ?? 'living')} costs, you'd keep about <strong class="text-white">${money(best.monthlyDisposable)}</strong> a month (${pct(best.savingsRate, 0)} of take-home).</div>
             </div>
+            <i aria-hidden="true" class="ti ti-asterisk spark-hero-mark"></i>
           </div>
         </div>
 

@@ -8,18 +8,23 @@ export const cssVar = (name: string, fallback: string): string => {
   return v || fallback;
 };
 
-export const palette = () => ({
-  primary: cssVar('--tblr-primary', '#066fd1'),
-  green: cssVar('--tblr-green', '#2fb344'),
-  orange: cssVar('--tblr-orange', '#f76707'),
-  red: cssVar('--tblr-red', '#d63939'),
-  purple: cssVar('--tblr-purple', '#ae3ec9'),
-  cyan: cssVar('--tblr-cyan', '#17a2b8'),
-  yellow: cssVar('--tblr-yellow', '#f59f00'),
-  muted: cssVar('--tblr-secondary', '#6c7a91'),
-  text: cssVar('--tblr-body-color', '#1d273b'),
-  border: cssVar('--tblr-border-color', '#e6e7e9'),
-});
+/** Spark Admin palette: forest greens with a lime accent (see src/theme-spark.css). */
+export const palette = () => {
+  const dark = document.body.getAttribute('data-bs-theme') === 'dark';
+  return {
+    primary: dark ? '#B4F105' : '#072F1F',
+    lime: '#B4F105',
+    green: '#22C55E',
+    orange: '#F97316',
+    red: '#EF4444',
+    purple: dark ? '#7FA493' : '#1A3E30',
+    cyan: '#0EA5E9',
+    yellow: '#EAB308',
+    muted: dark ? '#4B5E55' : '#C9D3CE',
+    text: cssVar('--tblr-body-color', dark ? '#E7EFEA' : '#0B130F'),
+    border: dark ? 'rgba(255,255,255,0.08)' : '#E9EFEF',
+  };
+};
 
 export function baseOptions(): ApexCharts.ApexOptions {
   const p = palette();
@@ -27,7 +32,7 @@ export function baseOptions(): ApexCharts.ApexOptions {
   return {
     chart: {
       fontFamily: 'inherit',
-      foreColor: p.muted,
+      foreColor: document.body.getAttribute('data-bs-theme') === 'dark' ? '#879A91' : '#6C7E75',
       toolbar: { show: false },
       animations: { enabled: !matchMedia('(prefers-reduced-motion: reduce)').matches },
       parentHeightOffset: 0,

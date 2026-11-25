@@ -5,7 +5,7 @@ import { money, pct } from '../../lib/format';
 export const aboutView: View = {
   title: 'Methodology',
   heading: 'How the numbers are worked out',
-  pretitle: 'Transparent by design',
+  pretitle: 'Every rule and assumption behind the numbers, with sources.',
   icon: 'info-circle',
   nav: true,
   render(host) {

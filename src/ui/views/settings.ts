@@ -10,7 +10,7 @@ import { effectiveCities, getState, replaceState, setState } from '../store';
 
 export const settingsView: View = {
   title: 'Settings & data',
-  pretitle: 'Make it yours',
+  pretitle: 'Living costs, appearance, backups and exports.',
   icon: 'settings',
   nav: true,
   render(host) {

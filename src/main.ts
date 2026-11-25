@@ -1,6 +1,8 @@
 import '@tabler/core/dist/css/tabler.min.css';
 import '@tabler/icons-webfont/dist/tabler-icons.min.css';
+import '@fontsource-variable/plus-jakarta-sans';
 import './styles.css';
+import './theme-spark.css';
 import { Collapse } from '@tabler/core';
 
 import { destroyCharts } from './ui/charts';
@@ -27,27 +29,60 @@ const routes: Record<string, View> = {
 
 let cleanup: (() => void) | undefined;
 
+const SECTIONS: { title: string; paths: string[] }[] = [
+  { title: 'Menu', paths: ['/'] },
+  { title: 'Tools', paths: ['/take-home', '/offers', '/tracker'] },
+  { title: 'More', paths: ['/settings', '/about'] },
+];
+
 function renderNav(path: string): void {
   const nav = $('#nav')!;
-  nav.innerHTML = Object.entries(routes)
-    .filter(([, v]) => v.nav)
-    .map(
-      ([p, v]) => `<li class="nav-item ${p === path ? 'active' : ''}">
-        <a class="nav-link" href="#${p}" ${p === path ? 'aria-current="page"' : ''}>
-          <span class="nav-link-icon d-md-none d-lg-inline-block"><i aria-hidden="true" class="ti ti-${v.icon}"></i></span>
-          <span class="nav-link-title">${esc(v.title)}</span>
-        </a></li>`,
-    )
-    .join('');
+  nav.innerHTML = SECTIONS.map(
+    (sec) => `<div class="spark-menu-section">
+      <div class="spark-menu-title">${esc(sec.title)}</div>
+      <ul class="navbar-nav">${sec.paths
+        .map((p) => {
+          const v = routes[p];
+          return `<li class="nav-item ${p === path ? 'active' : ''}">
+            <a class="nav-link" href="#${p}" ${p === path ? 'aria-current="page"' : ''}>
+              <span class="nav-link-icon"><i aria-hidden="true" class="ti ti-${v.icon}"></i></span>
+              <span class="nav-link-title">${esc(v.title)}</span>
+            </a></li>`;
+        })
+        .join('')}</ul>
+    </div>`,
+  ).join('');
 }
 
 function renderFreshness(): void {
   const el = $('#data-freshness');
   if (!el) return;
   const latest = getMarket()?.latest?.Malaysia?.date;
-  el.innerHTML = latest
-    ? `<i aria-hidden="true" class="ti ti-database me-1"></i>CPI data to ${esc(new Date(latest).toLocaleDateString('en-MY', { month: 'short', year: 'numeric', timeZone: 'UTC' }))}<br><span class="opacity-75">Source: DOSM via data.gov.my</span>`
-    : `<i aria-hidden="true" class="ti ti-database me-1"></i>Using built-in cost baselines`;
+  el.innerHTML = `<span class="sidebar-card-icon"><i aria-hidden="true" class="ti ti-database"></i></span>
+    <span class="d-block"><span class="d-block fw-bold text-white">${
+      latest ? `CPI to ${esc(new Date(latest).toLocaleDateString('en-MY', { month: 'short', year: 'numeric', timeZone: 'UTC' }))}` : 'Built-in baselines'
+    }</span><span class="d-block small">${latest ? 'DOSM via data.gov.my' : 'Live CPI unavailable'}</span></span>`;
+}
+
+function setupQuickJump(): void {
+  const input = document.getElementById('quick-jump') as HTMLInputElement | null;
+  const list = document.getElementById('quick-jump-list');
+  if (!input || !list) return;
+  list.innerHTML = Object.values(routes).map((v) => `<option value="${esc(v.title)}"></option>`).join('');
+  const go = () => {
+    const q = input.value.trim().toLowerCase();
+    if (!q) return;
+    const hit = Object.entries(routes).find(([, v]) => v.title.toLowerCase().includes(q) || (v.heading ?? '').toLowerCase().includes(q));
+    if (hit) {
+      location.hash = `#${hit[0]}`;
+      input.value = '';
+      input.blur();
+    }
+  };
+  input.addEventListener('change', go);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') go();
+  });
 }
 
 function route(): void {
@@ -105,6 +140,7 @@ function init(): void {
     applyTheme();
     route();
   });
+  setupQuickJump();
   subscribe(() => renderFreshness());
   renderFreshness();
   route();
