@@ -1,0 +1,57 @@
+name: Statutory rate changed
+description: A tax, EPF, SOCSO or EIS rate, relief, band or ceiling has changed.
+title: "chore(rates): "
+labels: ["rates"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Statutory rates live in `src/data/rates.ts`. Please link an official source (LHDN, KWSP, PERKESO or the Federal Gazette), not a news article alone.
+  - type: dropdown
+    id: scheme
+    attributes:
+      label: Which scheme?
+      options:
+        - Income tax band
+        - Tax relief or cap
+        - Tax rebate
+        - EPF (KWSP)
+        - SOCSO (PERKESO)
+        - EIS (PERKESO)
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: rate
+    attributes:
+      label: Rate or item
+      description: Which figure changed, and its current value in the app.
+      placeholder: e.g. Lifestyle relief cap, currently RM2,500
+    validations:
+      required: true
+  - type: input
+    id: new-value
+    attributes:
+      label: New value
+      placeholder: e.g. RM3,000
+    validations:
+      required: true
+  - type: input
+    id: effective-date
+    attributes:
+      label: Effective date or year of assessment
+      placeholder: e.g. YA 2026, or wages for January 2026 onwards
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Official source link
+      placeholder: https://www.hasil.gov.my/...
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything else, such as transition rules or who the change applies to.

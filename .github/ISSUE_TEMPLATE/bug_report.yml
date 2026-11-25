@@ -1,0 +1,56 @@
+name: Bug report
+description: Something is broken, or a number looks wrong.
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please do not include personal details such as your name, IC number or employer.
+        For security problems, use the private reporting described in SECURITY.md instead.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Take-home calculator
+        - Reverse calculator
+        - Offer comparison / negotiation helper
+        - Application tracker
+        - Living costs / CPI data
+        - Settings, backup and import
+        - Layout, dark mode or mobile
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you see, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to Take-home pay
+        2. Enter basic RM4,500, bonus 1 month
+        3. See ...
+    validations:
+      required: true
+  - type: textarea
+    id: numbers
+    attributes:
+      label: Inputs and expected figures (for wrong numbers)
+      description: The inputs you used, the figure the app showed, and the figure you expected (a payslip figure is ideal). Say where the expected figure comes from.
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: e.g. Chrome 131 on Windows 11, Safari on iPhone 15
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or other context
