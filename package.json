@@ -1,6 +1,6 @@
 {
   "name": "offerlens-my",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Malaysian salary & job-offer decision engine for fresh grads",
   "scripts": {
     "test": "vitest run",

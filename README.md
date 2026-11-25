@@ -48,6 +48,7 @@ OfferLens MY works all of that out for you and turns each offer into one compara
 | **Private by design** | No backend, no account, no tracking. Everything is stored in your browser's `localStorage`. |
 | **Export and import** | JSON backup and restore, plus CSV export of offers and applications. |
 | **Dark mode and mobile** | Follows your system theme or a manual toggle, and works on phone-sized screens. |
+| **Installable and offline** | Add it to your home screen or desktop from the browser menu. A service worker caches the app so it opens without a connection; CPI data is fetched fresh whenever you are online. |
 
 ## Screenshots
 
@@ -157,7 +158,9 @@ The site is a static build (`dist/`) with a relative base path, so it works on G
 
 - **GitHub Pages via Actions:** in the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**. Pushes to `main` run `deploy.yml`, which runs the unit tests, builds and publishes the site; the daily data refresh triggers a redeploy when new CPI data arrives. If Pages is not enabled, the deploy workflow skips with a notice instead of failing.
 - **Private repository note:** GitHub Pages on a private repository requires GitHub Pro, Team or Enterprise. To get the live site on a free account, make the repository public (or upgrade the plan).
-- **Any other static host:** run `npm run build` and upload `dist/`.
+- **Any other static host** (Netlify, Vercel, Cloudflare Pages, S3, nginx): run `npm run build` and upload `dist/`. No server code, database or environment variables are needed.
+- **Your own copy:** fork the repository, enable Pages as above, and change the site URL in `index.html` (canonical and `og:` tags) to yours. The daily CPI refresh runs in your fork automatically.
+- **Releasing:** bump `version` in `package.json`, add a section to `CHANGELOG.md`, tag `vX.Y.Z` and push the tag. When the app shell changes in a way old caches must not serve, bump `VERSION` in `public/sw.js`.
 
 ## Roadmap
 
@@ -166,7 +169,7 @@ The site is a static build (`dist/`) with a relative base path, so it works on G
 - [ ] KWSP's bonus-month rule for the employer EPF rate (wage + bonus above RM5,000 in that month)
 - [ ] More cities and finer-grained living-cost categories
 - [ ] Salary benchmarks from DOSM's formal sector wages dataset
-- [ ] Installable PWA with offline support
+- [x] Installable PWA with offline support
 
 ## Contributing
 

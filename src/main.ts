@@ -152,3 +152,12 @@ function init(): void {
 }
 
 init();
+
+// Offline support: only in production builds so dev hot-reload is never cached.
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {
+      /* offline support is optional */
+    });
+  });
+}

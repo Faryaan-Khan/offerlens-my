@@ -7,13 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-25
+
+### Added
+
+- Installable app: web app manifest, home-screen icons (including maskable) and
+  shortcuts to Take-home pay, Compare offers and Applications.
+- Offline support through a service worker (network first for pages and CPI
+  data, cache first for built assets).
+- Share previews (Open Graph and Twitter card image), canonical URL and robots.txt.
+
 ### Changed
 
 - Restyled the whole interface on the Spark Admin design (ThemeWagon): dark forest
   sidebar with grouped menu, topbar with quick jump search, rounded cards, lime
   accent hero cards, Plus Jakarta Sans and a matching chart palette in light and
   dark mode. Footer credits the template.
-- New O-ring logo (the O of Offer) in the brand, hero cards and favicon.
+- New O-ring logo (the O of Offer, drawn larger than a capital) in the brand,
+  hero cards and favicon; thinner large ring on hero cards.
 - Sun and moon theme toggle now animates; top-bar icons are centred.
 - Tracker stat icons and stage counts use the Spark palette.
 - Take-home curve label is readable in both themes.
@@ -54,5 +65,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation: README, methodology, data sources, contributing guide, code of
   conduct and security policy.
 
-[Unreleased]: https://github.com/Faryaan-Khan/offerlens-my/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/Faryaan-Khan/offerlens-my/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/Faryaan-Khan/offerlens-my/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Faryaan-Khan/offerlens-my/releases/tag/v1.0.0
