@@ -5,15 +5,6 @@ import { $, $$, confirmAction, openModal, toast } from '../dom';
 import { destroyCharts, palette, renderChart } from '../charts';
 import { getState, setState } from '../store';
 
-const STAGE_COLORS: Record<Stage, string> = {
-  wishlist: 'secondary',
-  applied: 'blue',
-  assessment: 'purple',
-  interview: 'orange',
-  offer: 'green',
-  rejected: 'red',
-};
-
 export const trackerView: View = {
   title: 'Applications',
   heading: 'Application tracker',
@@ -35,10 +26,10 @@ export const trackerView: View = {
 
       host.innerHTML = `
       <div class="row row-cards mb-3">
-        ${kpi('Submitted', String(stats.submitted), 'send', 'blue')}
-        ${kpi('Response rate', pct(stats.responseRate, 0), 'message-circle', 'purple')}
-        ${kpi('Interview rate', pct(stats.interviewRate, 0), 'users', 'orange')}
-        ${kpi('Offers', String(stats.offers), 'confetti', 'green')}
+        ${kpi('Submitted', String(stats.submitted), 'file-check', 'forest')}
+        ${kpi('Response rate', pct(stats.responseRate, 0), 'message-check', 'soft')}
+        ${kpi('Interview rate', pct(stats.interviewRate, 0), 'user-check', 'soft')}
+        ${kpi('Offers', String(stats.offers), 'award', 'lime')}
       </div>
       ${stats.overdue.length ? `<div class="alert alert-warning" role="alert"><div class="d-flex gap-2"><i aria-hidden="true" class="ti ti-calendar-due alert-icon"></i><div>
         <h4 class="alert-title">Follow-ups due</h4>
@@ -210,7 +201,7 @@ export const trackerView: View = {
 
 function kpi(label: string, value: string, icon: string, color: string): string {
   return `<div class="col-sm-6 col-lg-3"><div class="card card-sm"><div class="card-body"><div class="row align-items-center">
-    <div class="col-auto"><span class="bg-${color} text-white avatar"><i aria-hidden="true" class="ti ti-${icon}"></i></span></div>
+    <div class="col-auto"><span class="spark-kpi-icon spark-kpi-${color}"><i aria-hidden="true" class="ti ti-${icon}"></i></span></div>
     <div class="col"><div class="font-weight-medium h3 mb-0 metric">${esc(value)}</div><div class="text-secondary">${esc(label)}</div></div>
   </div></div></div></div>`;
 }
@@ -218,7 +209,7 @@ function kpi(label: string, value: string, icon: string, color: string): string 
 function column(stage: Stage, apps: Application[]): string {
   return `<section class="kanban-col" data-stage="${stage}" role="listitem" aria-label="${STAGE_LABELS[stage]} column">
     <div class="d-flex align-items-center mb-2">
-      <span class="badge bg-${STAGE_COLORS[stage]}-lt me-2">${apps.length}</span>
+      <span class="spark-count me-2"><span class="stage-dot stage-${stage}"></span>${apps.length}</span>
       <h3 class="h4 mb-0">${STAGE_LABELS[stage]}</h3>
     </div>
     ${apps.map(card).join('') || `<div class="text-secondary small px-1 py-3 text-center">Nothing here</div>`}

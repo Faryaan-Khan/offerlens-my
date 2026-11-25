@@ -39,7 +39,7 @@ export const overviewView: View = {
         <div class="h2 mb-1 text-truncate text-white">${best ? esc(best.offer.company) : 'No offers yet'}</div>
         <div class="text-secondary small mb-2">${best ? `Score ${best.score}/100 · ${money(best.monthlyDisposable)} left over/mo` : 'Add offers to compare them'}</div>
         <a href="#/offers" class="fw-bold small">${best ? 'See comparison' : 'Add an offer'} <i aria-hidden="true" class="ti ti-arrow-right"></i></a>
-      </div><i aria-hidden="true" class="ti ti-asterisk spark-hero-mark"></i></div></div>
+      </div><span aria-hidden="true" class="spark-hero-mark"></span></div></div>
       <div class="col-sm-6 col-lg-3"><div class="card"><div class="card-body">
         <div class="subheader">Monthly take-home</div>
         <div class="h1 mb-1 metric">${money2(pay.monthly.net)}</div>

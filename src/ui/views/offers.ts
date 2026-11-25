@@ -43,7 +43,7 @@ export const offersView: View = {
               <div class="h2 mb-1 text-white">${esc(best.offer.company)} comes out on top with ${best.score}/100</div>
               <div class="text-secondary">After tax, EPF, SOCSO, EIS and ${esc(best.city?.name ?? 'living')} costs, you'd keep about <strong class="text-white">${money(best.monthlyDisposable)}</strong> a month (${pct(best.savingsRate, 0)} of take-home).</div>
             </div>
-            <i aria-hidden="true" class="ti ti-asterisk spark-hero-mark"></i>
+            <span aria-hidden="true" class="spark-hero-mark"></span>
           </div>
         </div>
 

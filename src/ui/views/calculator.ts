@@ -152,7 +152,8 @@ export const calculatorView: View = {
         { name: 'Monthly take-home', data: points.map(([x, y]) => ({ x, y })) },
         { name: 'Basic salary', data: points.map(([x]) => ({ x, y: x })) },
       ];
-      const annotations = { points: [{ x: me[0], y: me[1], marker: { size: 6, fillColor: p.primary, strokeColor: '#fff', strokeWidth: 2 }, label: { text: money(me[1]), borderColor: p.primary, style: { background: p.primary, color: '#fff' } } }] };
+      const dark = document.body.getAttribute('data-bs-theme') === 'dark';
+      const annotations = { points: [{ x: me[0], y: me[1], marker: { size: 6, fillColor: p.primary, strokeColor: '#fff', strokeWidth: 2 }, label: { text: money(me[1]), borderColor: 'transparent', offsetY: -6, style: { background: dark ? '#B4F105' : '#051C12', color: dark ? '#051C12' : '#FFFFFF', fontSize: '12px', fontWeight: 700, padding: { left: 8, right: 8, top: 4, bottom: 4 } } } }] };
       if (curve) curve.updateOptions({ series: curveSeries, annotations }, false, false);
       else
         curve = renderChart($('#chart-curve'), {

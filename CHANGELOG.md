@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   sidebar with grouped menu, topbar with quick jump search, rounded cards, lime
   accent hero cards, Plus Jakarta Sans and a matching chart palette in light and
   dark mode. Footer credits the template.
+- New O-ring logo (the O of Offer) in the brand, hero cards and favicon.
+- Sun and moon theme toggle now animates; top-bar icons are centred.
+- Tracker stat icons and stage counts use the Spark palette.
+- Take-home curve label is readable in both themes.
 
 ## [1.0.0] - 2026-11-25
 

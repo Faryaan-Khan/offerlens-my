@@ -111,7 +111,7 @@ function applyTheme(): void {
   const theme = pref === 'system' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : pref;
   document.documentElement.setAttribute('data-bs-theme', theme);
   document.body.setAttribute('data-bs-theme', theme);
-  $$('.theme-toggle i').forEach((i) => (i.className = `ti ti-${theme === 'dark' ? 'sun' : 'moon'}`));
+  $$('.theme-toggle').forEach((b) => b.setAttribute('aria-pressed', String(theme === 'dark')));
 }
 
 function init(): void {
