@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>OfferLens MY · Malaysian salary &amp; job-offer decisions</title>
+    <meta name="description" content="Work out your real take-home pay in Malaysia (EPF, SOCSO, EIS, PCB), compare job offers adjusted for city living costs, plan salary negotiations and track applications. Runs entirely in your browser." />
+    <meta name="theme-color" content="#066fd1" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var s = JSON.parse(localStorage.getItem('offerlens-my:v1') || '{}');
+          var t = s.theme === 'light' || s.theme === 'dark' ? s.theme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-bs-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="page">
+      <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark" aria-label="Main navigation">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a href="#/" class="navbar-brand navbar-brand-autodark brand">
+            <span class="brand-mark" aria-hidden="true"><i aria-hidden="true" class="ti ti-zoom-money"></i></span>
+            <span>OfferLens <span class="text-primary">MY</span></span>
+          </a>
+          <div class="navbar-nav flex-row d-lg-none">
+            <button class="nav-link px-0 theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode"><i aria-hidden="true" class="ti ti-moon"></i></button>
+          </div>
+          <div class="collapse navbar-collapse" id="sidebar-menu">
+            <ul class="navbar-nav pt-lg-3" id="nav"></ul>
+            <div class="sidebar-foot d-none d-lg-block">
+              <div id="data-freshness" class="small text-secondary"></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <div class="page-wrapper">
+        <div class="page-header d-print-none">
+          <div class="container-xl">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <div class="page-pretitle" id="page-pretitle"></div>
+                <h1 class="page-title" id="page-title">OfferLens MY</h1>
+              </div>
+              <div class="col-auto ms-auto d-print-none" id="page-actions"></div>
+              <div class="col-auto d-none d-lg-block">
+                <button class="btn btn-icon theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode"><i aria-hidden="true" class="ti ti-moon"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <main class="page-body" id="main" tabindex="-1">
+          <div class="container-xl" id="view"></div>
+        </main>
+        <footer class="footer footer-transparent d-print-none">
+          <div class="container-xl">
+            <div class="row text-center align-items-center flex-row-reverse">
+              <div class="col-lg-auto ms-lg-auto">
+                <ul class="list-inline list-inline-dots mb-0">
+                  <li class="list-inline-item"><a href="#/about" class="link-secondary">Methodology</a></li>
+                  <li class="list-inline-item"><a href="https://github.com/Faryaan-Khan/offerlens-my" class="link-secondary" rel="noopener">Source</a></li>
+                </ul>
+              </div>
+              <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-secondary small">
+                Estimates only, not tax or financial advice. Your data never leaves this browser.
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toasts" aria-live="polite"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

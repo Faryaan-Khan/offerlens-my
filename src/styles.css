@@ -1,0 +1,61 @@
+/* Small additions on top of Tabler (https://tabler.io, MIT). Keep this file lean:
+   prefer Tabler utilities and components over custom CSS. */
+
+.brand { display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; letter-spacing: -.01em; }
+.brand-mark {
+  display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: .6rem;
+  background: var(--tblr-primary); color: #fff; font-size: 1.15rem;
+}
+.sidebar-foot { margin-top: auto; padding: 1rem 1.25rem 1.5rem; }
+.navbar-vertical .navbar-collapse { display: flex; flex-direction: column; }
+@media (max-width: 991.98px) { .navbar-vertical .navbar-collapse:not(.show) { display: none; } }
+
+.metric { font-variant-numeric: tabular-nums; }
+.money-lg { font-size: 2.25rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.table td, .table th { font-variant-numeric: tabular-nums; }
+
+.chart-sm { min-height: 140px; }
+.chart-md { min-height: 260px; }
+.chart-lg { min-height: 320px; }
+
+.kanban { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(210px, 1fr); gap: 1rem; overflow-x: auto; padding-bottom: .5rem; }
+.kanban-col { background: var(--tblr-bg-surface-secondary); border-radius: var(--tblr-border-radius-lg); padding: .75rem; min-height: 220px; }
+.kanban-col.drag-over { outline: 2px dashed var(--tblr-primary); outline-offset: -4px; }
+.kanban-card { cursor: grab; }
+.kanban-card:active { cursor: grabbing; }
+.kanban-card.dragging { opacity: .5; }
+
+.score-ring { --size: 3.25rem; width: var(--size); height: var(--size); border-radius: 50%; display: grid; place-items: center;
+  background: conic-gradient(var(--tblr-primary) calc(var(--p) * 1%), var(--tblr-border-color) 0); }
+.score-ring > span { width: calc(var(--size) - .6rem); height: calc(var(--size) - .6rem); border-radius: 50%;
+  background: var(--tblr-bg-surface); display: grid; place-items: center; font-weight: 700; font-size: .95rem; }
+
+.weight-row .form-range { flex: 1; }
+.empty { padding: 3rem 1rem; }
+.visually-hidden-focusable:focus { position: static !important; }
+
+@media print {
+  .navbar-vertical, .page-header .col-auto, .footer { display: none !important; }
+  .page-wrapper { margin: 0 !important; }
+}
+
+/* Dark sidebar, matching Tabler's "vertical dark" demo layout. */
+.navbar-vertical[data-bs-theme='dark'] {
+  --tblr-navbar-bg: #182433;
+  --tblr-navbar-border-color: #1f2e41;
+  background-color: #182433 !important;
+  color: rgba(255, 255, 255, .72);
+}
+.navbar-vertical[data-bs-theme='dark'] .nav-link { color: rgba(255, 255, 255, .72); }
+.navbar-vertical[data-bs-theme='dark'] .nav-item.active > .nav-link,
+.navbar-vertical[data-bs-theme='dark'] .nav-link:hover { color: #fff; background: rgba(255, 255, 255, .06); }
+.navbar-vertical[data-bs-theme='dark'] .brand { color: #fff; }
+.navbar-vertical[data-bs-theme='dark'] .sidebar-foot { color: rgba(255, 255, 255, .55); }
+.navbar-vertical .navbar-toggler-icon { filter: invert(1); }
+.money-lg { font-size: clamp(1.6rem, 2.2vw, 2.1rem); white-space: nowrap; }
+.table-nowrap td, .table-nowrap th { white-space: nowrap; }
+/* Tabler spreads the vertical navbar brand with space-between; keep the mark next to the name. */
+.navbar-vertical .navbar-brand.brand { justify-content: flex-start; }
+
+/* #main is focused programmatically after navigation; no visible ring needed on a non-interactive region. */
+#main:focus { outline: none; }

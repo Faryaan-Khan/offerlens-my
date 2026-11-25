@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-11-25T00:00:00Z",
+  "source": "OpenDOSM / data.gov.my (cpi_state, cpi_headline)",
+  "baseline": {
+    "W.P. Kuala Lumpur": {
+      "date": "2025-01-01",
+      "index": 133.6
+    },
+    "Selangor": {
+      "date": "2025-01-01",
+      "index": 139.8
+    },
+    "W.P. Putrajaya": {
+      "date": "2025-01-01",
+      "index": 140.5
+    },
+    "Pulau Pinang": {
+      "date": "2025-01-01",
+      "index": 136.4
+    },
+    "Johor": {
+      "date": "2025-01-01",
+      "index": 137.4
+    },
+    "Perak": {
+      "date": "2025-01-01",
+      "index": 128.4
+    },
+    "Sabah": {
+      "date": "2025-01-01",
+      "index": 122.7
+    },
+    "Sarawak": {
+      "date": "2025-01-01",
+      "index": 128.0
+    },
+    "Malaysia": {
+      "date": "2025-01-01",
+      "index": 133.6
+    }
+  },
+  "latest": {
+    "Johor": {
+      "date": "2026-10-01",
+      "index": 142.6
+    },
+    "Malaysia": {
+      "date": "2026-10-01",
+      "index": 137.7
+    },
+    "Perak": {
+      "date": "2026-10-01",
+      "index": 130.8
+    },
+    "Pulau Pinang": {
+      "date": "2026-10-01",
+      "index": 140.1
+    },
+    "Sabah": {
+      "date": "2026-10-01",
+      "index": 126.6
+    },
+    "Sarawak": {
+      "date": "2026-10-01",
+      "index": 129.8
+    },
+    "Selangor": {
+      "date": "2026-10-01",
+      "index": 144.7
+    },
+    "W.P. Kuala Lumpur": {
+      "date": "2026-10-01",
+      "index": 138.1
+    },
+    "W.P. Putrajaya": {
+      "date": "2026-10-01",
+      "index": 145.0
+    }
+  }
+}
