@@ -1,30 +1,46 @@
 {
-  "generatedAt": "2026-11-25T00:00:00Z",
+  "generatedAt": "2026-11-26T09:34:09Z",
   "source": "OpenDOSM / data.gov.my (cpi_state, cpi_headline)",
   "baseline": {
-    "W.P. Kuala Lumpur": {
-      "date": "2025-01-01",
-      "index": 133.6
-    },
-    "Selangor": {
-      "date": "2025-01-01",
-      "index": 139.8
-    },
-    "W.P. Putrajaya": {
-      "date": "2025-01-01",
-      "index": 140.5
-    },
-    "Pulau Pinang": {
-      "date": "2025-01-01",
-      "index": 136.4
-    },
     "Johor": {
       "date": "2025-01-01",
       "index": 137.4
     },
+    "Kedah": {
+      "date": "2026-10-01",
+      "index": 131.5
+    },
+    "Kelantan": {
+      "date": "2026-10-01",
+      "index": 131
+    },
+    "Malaysia": {
+      "date": "2025-01-01",
+      "index": 133.6
+    },
+    "Melaka": {
+      "date": "2026-10-01",
+      "index": 133.7
+    },
+    "Negeri Sembilan": {
+      "date": "2026-10-01",
+      "index": 137.4
+    },
+    "Pahang": {
+      "date": "2026-10-01",
+      "index": 136.4
+    },
     "Perak": {
       "date": "2025-01-01",
       "index": 128.4
+    },
+    "Perlis": {
+      "date": "2026-10-01",
+      "index": 127.8
+    },
+    "Pulau Pinang": {
+      "date": "2025-01-01",
+      "index": 136.4
     },
     "Sabah": {
       "date": "2025-01-01",
@@ -32,11 +48,27 @@
     },
     "Sarawak": {
       "date": "2025-01-01",
-      "index": 128.0
+      "index": 128
     },
-    "Malaysia": {
+    "Selangor": {
+      "date": "2025-01-01",
+      "index": 139.8
+    },
+    "Terengganu": {
+      "date": "2026-10-01",
+      "index": 131.1
+    },
+    "W.P. Kuala Lumpur": {
       "date": "2025-01-01",
       "index": 133.6
+    },
+    "W.P. Labuan": {
+      "date": "2026-10-01",
+      "index": 127.6
+    },
+    "W.P. Putrajaya": {
+      "date": "2025-01-01",
+      "index": 140.5
     }
   },
   "latest": {
@@ -44,13 +76,37 @@
       "date": "2026-10-01",
       "index": 142.6
     },
+    "Kedah": {
+      "date": "2026-10-01",
+      "index": 131.5
+    },
+    "Kelantan": {
+      "date": "2026-10-01",
+      "index": 131
+    },
     "Malaysia": {
       "date": "2026-10-01",
       "index": 137.7
     },
+    "Melaka": {
+      "date": "2026-10-01",
+      "index": 133.7
+    },
+    "Negeri Sembilan": {
+      "date": "2026-10-01",
+      "index": 137.4
+    },
+    "Pahang": {
+      "date": "2026-10-01",
+      "index": 136.4
+    },
     "Perak": {
       "date": "2026-10-01",
       "index": 130.8
+    },
+    "Perlis": {
+      "date": "2026-10-01",
+      "index": 127.8
     },
     "Pulau Pinang": {
       "date": "2026-10-01",
@@ -68,13 +124,21 @@
       "date": "2026-10-01",
       "index": 144.7
     },
+    "Terengganu": {
+      "date": "2026-10-01",
+      "index": 131.1
+    },
     "W.P. Kuala Lumpur": {
       "date": "2026-10-01",
       "index": 138.1
     },
+    "W.P. Labuan": {
+      "date": "2026-10-01",
+      "index": 127.6
+    },
     "W.P. Putrajaya": {
       "date": "2026-10-01",
-      "index": 145.0
+      "index": 145
     }
   }
 }
